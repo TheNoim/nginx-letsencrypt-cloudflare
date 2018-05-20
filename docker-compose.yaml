@@ -1,0 +1,26 @@
+version: "3.5"
+services:
+  certbot:
+    build: certbot/
+    container_name: certbot
+    volumes:
+    - ./dnscloudflare.ini:/etc/letsencrypt/dnscloudflare.ini
+    - ./letsencrypt:/etc/letsencrypt/
+    environment:
+    #- DOMAINS=*.example.com
+    #- EMAIL=max.mustermann@example.com
+    #- AGREE_TOS=true
+    networks:
+    - nginx
+  nginx:
+    build: nginx/
+    container_name: nginx
+    networks:
+    - nginx
+    volumes:
+    - ./letsencrypt:/etc/letsencrypt/
+    - ./config.d:/etc/nginx/conf.d/
+    - ./nginx.conf:/etc/nginx/nginx.conf
+networks:
+  nginx:
+    name: nginx
