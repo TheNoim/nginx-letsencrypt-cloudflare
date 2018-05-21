@@ -1,6 +1,11 @@
 # nginx-letsencrypt-cloudflare
 Auto letsencrypt for cloudflare and nginx users
 
+Features:
+- Auto SSL certificate by Let's Encrypt (Wildcard support)
+- Check for certificate renew every day
+- Reload nginx on config or certificate change
+
 Requirements:
 - Docker
 - Docker-compose
